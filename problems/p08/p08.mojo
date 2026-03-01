@@ -27,12 +27,13 @@ fn add_10_shared(
     # Load local data into shared memory
     if global_i < size:
         shared[local_i] = a[global_i]
-
+        shared[local_i] += 10.0
     # wait for all threads to complete
     # works within a thread block
     barrier()
 
-    # FILL ME IN (roughly 2 lines)
+    if global_i < size:
+        output[global_i] = shared[local_i]
 
 
 # ANCHOR_END: add_10_shared
